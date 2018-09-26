@@ -1,0 +1,16 @@
+<div class="tab" id="{{ids}}" *ngIf="url">
+    <a routerLink="{{item.url}}" *ngFor="let item of tabs" class="tab-item" routerLinkActive="tbi-cur">
+        <div class="tbi-text">
+            {{item.name}}
+            <div class="tbi-des" *ngIf="item.text">{{item.text}}</div>
+        </div>
+    </a>
+</div>
+<div class="tab" id="{{ids}}" *ngIf="!url">
+    <div *ngIf="let item of tabs;let index=index" class="{{(index==tabidx?'tbi-cur':'')}} tab-item" (click)="switchtab(index)">
+        <div class="tbi-text">
+            {{item.name}}
+            <div class="tbi-des" *ngIf="item.text">{{item.text}}</div>
+        </div>
+    </div>
+</div>

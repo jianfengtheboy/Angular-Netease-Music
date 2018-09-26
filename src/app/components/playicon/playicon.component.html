@@ -1,0 +1,10 @@
+<a id="playico"
+    *ngIf="music.id"
+    routerLink="playurl/{{music.id}}?img={{music.pic_str||music.pic||''}}"
+    class="{{!playing?'playingico':''}} cntloading"
+>
+    <span class="cl1"></span>
+    <span class="cl2"></span>
+    <span class="cl3"></span>
+    <span class="cl4"></span>
+</a>

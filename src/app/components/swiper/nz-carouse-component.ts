@@ -13,8 +13,8 @@ import {
     Renderer2,
     ViewChild
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { first } from 'rxjs/operators/first';
+import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 import { toBoolean } from '../../utils/convert';
 
