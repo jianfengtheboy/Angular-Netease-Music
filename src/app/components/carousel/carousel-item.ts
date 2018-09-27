@@ -1,0 +1,75 @@
+import { Component, ElementRef, forwardRef, Inject, Input, OnInit } from '@angular/core';
+import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
+import { ElCarousel } from './carousel';
+import { removeNgTag } from '../../utils/utils';
+import { AnimationTriggerMetadata, trigger, state, style, animate, transition } from '@angular/animations';
+
+@Component({
+    selector : 'el-carousel-item',
+    template : `
+        <div class='el-carousel__item'
+            [class.is-active]='isActive'
+            [class.el-carousel__item--card]="root.type === 'card'"
+            [class.is-animating]='isAnimating'
+            [style]='styles'
+        >
+            <ng-content></ng-content>
+        </div>
+    `
+})
+
+export class ElCarouselItem implements OnInit {
+    @Input() index : number;
+    @Input() label : string = '';
+
+    width : number;
+
+    preTranslate : number;
+    isAnimating : boolean;
+    isActive : boolean = false;
+    styles : SafeStyle;
+
+    constructor(
+        @Inject(forwardRef(() => ElCarousel))
+        public root : ElCarousel,
+        private sanitizer : DomSanitizer,
+        private el : ElementRef
+    ) {}
+    updateActive() : void {
+        const isActive : boolean = this.root.model === this.index;
+        if (this.isActive !== isActive) {
+            this.isActive = isActive;
+        }
+    }
+    updateStyles() : void {
+        const map : any = {
+            '1': 0 - this.width,
+            '-1': this.width,
+            '2': this.width,
+            '-2': 0 - this.width,
+            '0': 0
+        }
+        const offset : number = this.root.model - this.index;
+        const translate = map[offset];
+        const styles : string = `transform: translateX(${translate}px)`;
+        const changeDirection : boolean = (this.preTranslate < 0 && translate > 0) ||
+                                          (this.preTranslate > 0 && translate < 0);
+        this.isAnimating = !changeDirection;
+        this.styles = this.sanitizer.bypassSecurityTrustStyle(styles);
+        this.preTranslate = translate;
+    }
+
+    update() : void {
+        this.updateStyles();
+        this.updateActive();
+    }
+
+    ngOnInit() : void {
+        this.root.items.push(this.label);
+        this.width = this.el.nativeElement.children[0].offsetWidth;
+        removeNgTag(this.el.nativeElement)
+
+        this.root.subscriber.push(() => this.update())
+        this.update();
+    }
+}

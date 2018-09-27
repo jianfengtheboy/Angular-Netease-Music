@@ -11,7 +11,7 @@ import { appRoutes } from './app.route';
 
 //store
 import { NgxsModule, NgxsReduxDevtoolsPluginModule } from 'ngxs';
-//import { TodoState } from './store/music/music.reducer';
+import { TodoState } from './store/music/music.reducer';
 
 //page
 import { IndexComponent } from './page/index/index.component';
@@ -29,10 +29,10 @@ import { IndexComponent } from './page/index/index.component';
 //import { UserComponent } from './page/user/user.component';
 
 //component
-//import { BackComponent } from './components/back/back.component';
-//import { TabComponent } from './components/tab/tab.component';
-//import { PlayIconComponent } from './components/playicon/playicon.component';
-//import { LoadingComponent } from './components/loading/loading.component';
+import { BackComponent } from './components/back/back.component';
+import { TabComponent } from './components/tab/tab.component';
+import { PlayIconComponent } from './components/playicon/playicon.component';
+import { LoadingComponent } from './components/loading/loading.component';
 //import { SongListComponent } from './components/songlist/songlist.component';
 //import { PlayActionComponent } from './components/playaction/playaction.component';
 //import { LrcComponent } from './components/lrc/lrc.component';
@@ -74,13 +74,13 @@ import {
         //RadioComponent,
         //ProgramComponent,
         //UserComponent,
-        //LoadingComponent,
+        LoadingComponent,
         //SongListComponent,
         //PlayActionComponent,
         //LrcComponent,
-        //BackComponent,
-        //TabComponent,
-        //PlayIconComponent,
+        BackComponent,
+        TabComponent,
+        PlayIconComponent,
         //PlComponent,
         //CommentslistComponent
     ],
@@ -91,7 +91,7 @@ import {
         BrowserAnimationsModule,
         WeUiModule.forRoot(),
         NzCarouselModule.forRoot(),
-        //NgxsModule.forRoot([TodoState]),
+        NgxsModule.forRoot([TodoState]),
         RouterModule.forRoot(appRoutes)
     ],
     providers: [],

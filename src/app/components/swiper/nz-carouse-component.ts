@@ -27,17 +27,20 @@ import { NzCarouselContentDirective } from './nz-carousel-content.directive';
         <div class='slick-initialized slick-slider' [class.slick-vertical]='nzVertical'>
             <div class='slick-list' #slickList tabindex='-1' (keydown)='onKeyDown($event)'>
                 <div class='slick-track' [style.transform]='transform' #slickTrack>
-                    <ng-content></ng-content>
-                </div>
+                <ng-content></ng-content>
             </div>
-            <div class='slick-next' (click)='next()'></div>
+        </div>
+        <div class='slick-next' (click)='next()'></div>
             <div class='slick-prev' (click)='pre()'></div>
             <ul class='slick-dots' *ngIf='nzDots'>
-                <li *ngFor='let content of slideContents; let i = index' [class.slick-active]='content.isActive' (click)='setActive(content,i)'>
-                    <button>{{i + 1}}</button>
+                <li *ngFor='let content of slideContents; let i =index'
+                    [class.slick-active]='content.isActive'
+                    (click)='setActive(content,i)'>
+                        <button>{{i + 1}}</button>
                 </li>
-            </ul/>
-        </div>`,
+            </ul>
+        </div>
+    `,
     host : {
         '[class.ant-carousel]' : 'true'
     },
