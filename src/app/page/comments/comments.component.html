@@ -1,0 +1,17 @@
+<weui-infiniteloader (loadmore)="getcomments(true, $event)" #comp [config]="{percent:90}" class="page_t">
+    <div class="we-header">
+        <back></back>
+        <div class="we-header-title">评论{{rec.total}}</div>
+        <app-comp-playicon></app-comp-playicon>
+    </div>
+    <div *ngIf="rec.hotComments.length">
+        <div class="sm_title">热门评论</div>
+        <app-comp-cmt [list]="rec.hotComments"></app-comp-cmt>
+        <div class="cntloading" v-if="rec.moreHot1">查看更多热门评论</div>
+    </div>
+    <div *ngIf="rec.comments.length">
+        <div class="sm_title">精彩评论({{rec.total}})</div>
+        <app-comp-cmt [list]="rec.comments"></app-comp-cmt>
+    </div>
+    <div *ngIf="loaded&&!rec.comments.length" class="cntloading">暂无评论</div>
+</weui-infiniteloader>

@@ -1,0 +1,64 @@
+<div id="headerblur">
+    <div class="blurbg" [ngStyle]="{'background-image':'url('+cover+')'}"></div>
+</div>
+<div class="we-header">
+    <back></back>
+    <div class="we-header-title">{{list.playlist?.name}}</div>
+    <app-comp-playicon></app-comp-playicon>
+</div>
+
+<div id="plist-header" ref="main">
+    <div class="blurbg" [ngStyle]="{'background-image':'url('+cover+')'}"></div>
+    <div id="plh-main">
+        <div id="plh-cover" class="music_cover">
+            <div class="hqico cover_ico" *ngIf="list.playlist?.highQuality"></div>
+            <img src="{{cover}}" *ngIf="cover" class="music_cover" />
+            <div class="img_playcount" *ngIf="list.playlist?.playCount">
+                <img src="../../../assets/images/p0.png" />{{list.playlist?.playCount}}</div>
+            <div id="plh-playinfo">
+                <img src="../../../assets/images/cm2_list_detail_icn_infor@2x.png" />
+            </div>
+        </div>
+        <div id="plh-cnt">
+            <span id="music_h_name">{{list.playlist.name}}</span>
+            <div>
+                <img id="user_ava" class="user_avator" src="{{list.playlist?.creator.avatarUrl}}" />
+                <a>{{list.playlist?.creator.nickname||" "}}</a>
+                <img src="../../../assets/images/cm2_list_detail_icn_arr@2x.png" style="height:1.2em;" />
+            </div>
+        </div>
+    </div>
+    <div id="plh_action">
+        <div>
+            <img src="../../../assets/images/cm2_list_detail_icn_fav_new@2x.png" *ngIf="!list.playlist?.subscribed" />
+            <img src="../../../assets/images/cm2_list_detail_icn_faved@2x.png" *ngIf="list.playlist?.subscribed" />
+            <span>{{list.playlist.subscribedCount||'收藏'}}</span>
+        </div>
+        <div>
+            <a>
+                <img src="../../../assets//images/cm2_list_detail_icn_cmt@2x.png" />
+                <span>{{list.playlist.commentCount||'评论'}}</span>
+            </a>
+        </div>
+        <div>
+            <img src="../../../assets//images/cm2_list_detail_icn_share@2x.png" />
+            <span>{{list.playlist.shareCount||'分享'}}</span>
+        </div>
+    </div>
+</div>
+<div class="plist-detail">
+    <div *ngIf="loaded">
+        <div id="playall" (click)="playall()" class="flexlist flex-center">
+            <div class="flexleft flexnum ">
+                <img src="../../../assets//images/pl-playall.png" />
+            </div>
+            <div class="flexlist">
+                <span id="pa-count">播放全部 <span> (共{{list.playlist?.trackCount}}首)</span>
+                </span>
+            </div>
+        </div>
+        <div class="cntloading" *ngIf="!list.playlist.tracks?.length">暂无数据</div>
+        <app-comp-songlist [list]="list.playlist.tracks" [curplay]="music.id" [privileges]="list.privileges" [trackids]="list.playlist.trackIds" [toplist]="istoptype"></app-comp-songlist>
+    </div>
+    <loading *ngIf="!loaded"></loading>
+</div>

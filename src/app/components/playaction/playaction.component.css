@@ -1,0 +1,80 @@
+#playing-status {
+    color: #fff;
+    padding: 0 1em;
+    display: flex;
+    align-items: center;
+}
+
+.weui-slider__track {
+    background-color: #bb2c08;
+}
+
+.weui-slider__handler {
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    margin-top: -8px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
+
+.weui-slider__handler:after {
+    border: 2px solid #d33a31;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    content: '';
+    border-radius: 1em;
+    margin-top: -2px;
+    margin-left: -2px;
+}
+
+.weui-slider {
+    padding: 15px;
+}
+
+.weui-slider-box {
+    flex: 1;
+}
+
+.loading .slider__handler:after {
+    border-color: #000;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    width: 80%;
+    height: 80%;
+    left: 10%;
+    top: 10%;
+    border: none;
+    margin: 0;
+}
+
+#fm-action {
+    margin: 0 0 2%;
+    display: flex;
+}
+
+#fm-action div {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+#fm-action .playbtn {
+    flex: 0 0 1;
+}
+
+#fm-action img {
+    width: 70%;
+    vertical-align: top;
+    margin-top: 10%;
+}
+
+#fm-action .playbtn img {
+    width: 90%;
+    margin-top: 0;
+}

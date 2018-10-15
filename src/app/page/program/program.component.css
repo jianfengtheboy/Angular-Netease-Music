@@ -1,0 +1,105 @@
+:host .we-header {
+    background: rgba(0, 0, 0, 0);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.blurbg {
+    z-index: 0;
+    height: 100%;
+    padding: 0;
+    background-position: center center;
+    background-size: auto 100%;
+}
+
+#program_radio_info {
+    color: #fff;
+    margin-top: 40px;
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+}
+
+#program_radio_info .flexlist {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2% 2% 2% 0;
+}
+
+#subtn img {
+    height: 2em;
+    vertical-align: top;
+}
+
+#subtn {
+    border: 1px solid rgba(255, 255, 255, 1);
+    padding: 0 1.2em 0 0.8em;
+    color: #fff;
+    border-radius: 2em;
+    line-height: 2;
+}
+
+.flexact {
+    font-size: 0.8em;
+}
+
+.relistdes {
+    color: #fff;
+}
+
+#p_info_menu {
+    position: absolute;
+    top: 40px;
+    z-index: 10;
+    bottom: 10em;
+    width: 100%;
+    color: #fff;
+    overflow: auto;
+}
+
+.menu .mn_ico,
+.menu .cmain,
+.menu .rdes {
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mn_list {
+    color: #fff;
+}
+
+#p_info {
+    padding: 1em;
+    line-height: 1.6;
+}
+
+#p_info_time {
+    color: #ddd;
+    padding: 0.5em 0;
+}
+
+#playing-main {
+    z-index: 10;
+    margin-top: 43.5%;
+}
+
+#pmaincover {
+    position: absolute;
+    width: auto;
+    height: auto;
+    left: 3px;
+    top: 3px;
+    right: 3px;
+    bottom: 3px;
+    z-index: 3;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+#coverbg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1;
+}

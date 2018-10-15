@@ -1,0 +1,64 @@
+<div id="playing-status">
+    <div>{{playtime|date:'mm:ss'}}</div>
+    <div class="weui-slider-box" [(ngModel)]="playtime" name="res2" weui-slider weui-min="0" weui-max="{{music.dt}}" (weui-change)="seekmusic($event)">
+        <div class="weui-slider">
+            <div class="weui-slider__inner">
+                <div class="weui-slider__track"></div>
+                <div class="weui-slider__handler"></div>
+            </div>
+        </div>
+    </div>
+    <div>{{(music.dt||music.duration)|date:'mm:ss'}}</div>
+</div>
+<div id="playingaction" *ngIf="playtype!==2">
+    <!-- 单曲 -->
+    <div class="pa-saction" (click)="shuffle()" [hidden]="playtype!==1">
+        <img src="assets/images/cm2_icn_loop@2x.png" [hidden]="shuffle_am!==0" />
+        <img src="assets/images/cm2_icn_one@2x.png" [hidden]="shuffle_am!==1" />
+        <img src="assets/images/cm2_icn_shuffle@2x.png" [hidden]="shuffle_am!==2" />
+    </div>
+    <!-- program -->
+    <div class="pa-saction" (click)="shuffle()" [hidden]="playtype!==3">
+        <img src="assets/images/cm2_icn_order@2x.png" [hidden]="shuffle_dj!==0" />
+        <img src="assets/images/cm2_icn_one@2x.png" [hidden]="shuffle_dj!==1" />
+        <img src="assets/images/cm2_icn_shuffle@2x.png" [hidden]="shuffle_dj!==2" />
+    </div>
+    <div class="pa-maction" (click)="prev()">
+        <img src="assets/images/ajh.png" />
+    </div>
+    <div class="pa-baction" (click)="setplaying()">
+        <!-- music||program -->
+        <img id='pa-playing' src="assets/images/ajf.png" [hidden]="playing" />
+        <img id='pa-playing' src="assets/images/ajd.png" [hidden]="!playing" />
+    </div>
+    <div class="pa-maction" (click)="next()">
+        <img src="assets/images/ajb.png" />
+    </div>
+    <div class="pa-saction" (click)="psaction()">
+        <img src="assets/images/cm2_icn_list@2x.png" />
+    </div>
+</div>
+<div id="fm-action" *ngIf="playtype==2">
+    <div (click)="del_fm()">
+        <img src="assets/images/fm/cm2_fm_btn_delete@2x.png" />
+    </div>
+    <div (click)="heart()">
+        <img src="assets/images/fm/cm2_fm_btn_loved@2x.png" [hidden]="!star" />
+        <img src="assets/images/fm/cm2_fm_btn_love@2x.png" [hidden]="star" />
+    </div>
+    <div class="playbtn" (click)="setplaying()">
+        <!-- fm -->
+        <img id='pa-playing' src="assets/images/fm/cm2_fm_btn_play@2x.png" [hidden]="playing" />
+        <img id='pa-playing' src="assets/images/fm/cm2_fm_btn_pause@2x.png" [hidden]="!playing" />
+    </div>
+    <div (click)="nextfm()">
+        <img src="assets/images/fm/cm2_fm_btn_next@2x.png" />
+    </div>
+    <div class="commentscount">
+        <a [routerLink]="['/comment/'+music.id]" [queryParams]="{ctype:2}">
+            <img src="assets/images/fm/cm2_fm_btn_cmt_number@2x.png" [hidden]="!commentscount" />
+            <img src="assets/images/fm/cm2_fm_btn_cmt@2x.png" [hidden]="commentscount" />
+            <span [hidden]="!commentscount">{{commentscount>999?'999+':commentscount}}</span>
+        </a>
+    </div>
+</div>

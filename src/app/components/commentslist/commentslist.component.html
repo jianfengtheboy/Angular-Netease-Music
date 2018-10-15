@@ -1,0 +1,41 @@
+<div class="limg_list rec_list" *ngFor="let item of list;let index=index">
+    <div class="rec_avatar">
+        <img class="user_avator" [src]="item.user.avatarUrl+'?param=60y60'" />
+    </div>
+    <div class="rec_main">
+        <div class="rm_header">
+            <div>
+                <span>{{item.likedCount}}</span>
+                <img src="../../../assets/images/xg.png" *ngIf="!item.liked" />
+                <img src="../../../assets/images/xi.png" *ngIf="item.liked" />
+            </div>
+            <span class="fmh_name">{{item.user.nickname}}</span>
+            <span class="fmh_time">{{(item.time)|Ptime}}</span>
+        </div>
+        <div class="rm_cnt">
+            <div *ngIf="item.beReplied.length">
+                回复
+                <span class="replyname">@{{item.beReplied[0].user.nickname}}</span>
+            </div>
+            <div class="WxEmojidiv">
+                <ng-container *ngFor="let re of item.content|Pemoji">
+                    <ng-container *ngIf="re.node === 'text'">{{re.text}}</ng-container>
+                    <ng-container *ngIf="re.node === 'element'">
+                        <img class="wxEmoji" [src]="'http://s1.music.126.net/style/web2/emt//emoji_'+re.text+'.png'" />
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div class="rmc_reply" *ngIf="item.beReplied.length">
+                <span class="replyname">@{{item.beReplied[0].user.nickname}}</span>：
+                <div class="WxEmojidiv">
+                    <ng-container *ngFor="let r of item.beReplied[0].content|Pemoji">
+                        <ng-container *ngIf="r.node === 'text'">{{r.text}}</ng-container>
+                        <ng-container *ngIf="r.node === 'element'">
+                            <img class="wxEmoji" [src]="'http://s1.music.126.net/style/web2/emt//emoji_'+r.text+'.png'" />
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

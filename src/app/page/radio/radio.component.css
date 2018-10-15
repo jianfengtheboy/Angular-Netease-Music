@@ -1,0 +1,42 @@
+:host .we-header {
+    background: rgba(0, 0, 0, .25);
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+.stfixed {
+    padding-top: 80%;
+}
+
+.stfixed #artist_header {
+    position: fixed;
+    margin-top: 0;
+}
+
+.blurbg {
+    background-color: #eee
+}
+
+#artist_header {
+    padding-top: 80%;
+}
+
+#artist_header img {}
+
+#djradio_info {
+    margin-top: -1px;
+    line-height: 1.4
+}
+
+#djradio_info .infowrap {
+    padding: .5em 2%;
+    line-height: 1.6;
+    border-bottom: 1px solid #dadada;
+}
+
+.infowrap .flexlist .flexlist .flexleft {
+    margin-left: 0;
+}
+
+.info_des {
+    color: #999;
+}

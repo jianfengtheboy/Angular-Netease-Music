@@ -1,0 +1,83 @@
+<div id="playingpage" [ngClass]="(playing?'playing':'')">
+    <div class="we-header">
+        <back></back>
+        <div class="we-header-title">{{program.name}}</div>
+    </div>
+    <img src="../../assets/images/cm2_play_disc_radio-ip6@2x.png" [hidden]="showlrc" id="coverbg" alt="" />
+    <div id="playing-bg" class="blurbg" [ngStyle]="{'background-image':'url('+program.mainSong?.album?.picUrl+'?param=500y500)'}"></div>
+    <div class="flexlist flex-center" id="program_radio_info" [hidden]="!showlrc">
+        <div class="flexlist ml">
+            <div class="flexleft fl-image">
+                <img id="radio_cover" [src]="program.radio?.picUrl+'?param=50y50'" /></div>
+            <div class="flexmain">
+                <div>{{program.radio?.name}}</div>
+                <div class="relistdes">{{program.radio?.subCount|Pplaycount}}人订阅</div>
+            </div>
+            <div class="flexact">
+                <div class="fa_list" id="subtn" (click)="djradio_sub()">
+                    <img src="../../assets/images/cm2_vehicle_icn_subscribe@2x.png" *ngIf="!program.radio?.subed" alt="" />
+                    <img src="../../assets/images/cm2_vehicle_icn_subscribed@2x.png" *ngIf="program.radio?.subed" alt="" />
+                    <span *ngIf="program.radio?.subed">已</span>订阅
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu" id="p_info_menu" [hidden]="!showlrc" (click)="showlrc=!showlrc">
+        <a replace :to="{name:'radio',params:{id:program.radio.id}}" class="mn_list">
+            <div class="mn_ico">
+                <img src="../../assets/images/cm2_rdi_icn_name@2x.png" />
+            </div>
+            <div class="cmain">{{program.radio?.name}}</div>
+            <div class="rdes">
+                <div class="arrow arrow-white"></div>
+            </div>
+        </a>
+        <a replace class="mn_list" :to="{name:'user',params:{id:program.dj.userId}}">
+            <div class="mn_ico">
+                <img src="../../assets/images/cm2_rdi_icn_artist@2x.png" />
+            </div>
+            <div class="cmain">{{program.dj?.nickname}}</div>
+            <div class="rdes">
+                <div class="arrow arrow-white"></div>
+            </div>
+        </a>
+
+        <div id="p_info">
+            <div>
+                <span class="tags">{{program.radio?.category}}</span>{{program.name}}Vol.{{program.serialNum}}</div>
+            <div id="p_info_time">创建 播放：{{program.listenerCount}}次</div>
+            <div>{{program.description}}</div>
+        </div>
+    </div>
+
+    <div id="playing-main" [hidden]="showlrc" (click)="showlrc=!showlrc">
+        <img id="playingmainbg" src="../../assets/images/play.png" />
+        <div [ngStyle]="{'background-image':'url('+(program.mainSong?.album||{}).picUrl+'?param=400y400)'}" bindtap="loadlrc" id="pmaincover"></div>
+    </div>
+    <div id="playing-actwrap">
+        <div id="playing-info" [hidden]="showlrc">
+            <div class="pi-act commentscount" (click)="heart()">
+                <img [src]="'../../assets/images/cm2_play_icn_'+(!program.liked?'praise':'yizan')+'@2x.png'" />
+                <span>{{program.likedCount}}</span>
+            </div>
+            <!-- -->
+            <div class="pi-act" bindtap="downprogram">
+                <img src="../../assets/images/cm2_list_detail_icn_share@2x.png" />
+            </div>
+            <a class="pi-act commentscount" routerLink="/comment/{{program.commentThreadId}}" :to="{name:'comment',params:{id:program.commentThreadId},query:{ctype:1}}">
+                <img *ngIf="!commentscount" src="../../assets/images/cm2_play_icn_cmt@2x.png" />
+                <img *ngIf="commentscount" src="../../assets/images/cm2_play_icn_cmt_num@2x.png" />
+                <span *ngIf="commentscount">{{commentscount>999?'999+':commentscount}}</span>
+            </a>
+            <!-- -->
+            <div class="pi-act">
+                <img src="../../assets/images/cm2_play_icn_more@2x.png" />
+            </div>
+        </div>
+        <app-comp-playaction (psaction)="psaction()" [music]="music" [playtime]="playtime" [playing]="playing" (Esetplaying)="Esetplaying($event)" (Eseekprogram)="EseekMusic($event)" [playtype]="3"></app-comp-playaction>
+    </div>
+    <audio src="{{playurl}}" (timeupdate)="playingtime($event)" id="music" (canplay)="setplaying(true)">
+        <track kind="subtitles" />
+    </audio>
+</div>

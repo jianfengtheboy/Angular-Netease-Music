@@ -1,0 +1,98 @@
+<!--
+<el-carousel arrow="always" [height]="bannerheight">
+    <el-carousel-item *ngFor="let item of banner">
+        <img src="{{item.pic}}" class="banner-item" alt="">
+    </el-carousel-item>
+</el-carousel>
+ -->
+<nz-carousel nzAutoPlay>
+    <div nz-carousel-content *ngFor="let item of banner">
+        <img src="{{item.pic}}" class="banner-item" alt="">
+    </div>
+</nz-carousel>
+<div *ngIf="!loaded" id="album_loading">
+    <img src="../../assets/images/cm2_discover_icn_start_big@2x.png" alt="">
+    正在为您生成个性化推荐...
+</div>
+<div *ngIf="loaded">
+    <div id="rec_nav">
+        <a routerLink="/fm">
+            <div class="recn_ico">
+                <img src="../../assets/images/cm2_discover_icn_fm-ip6@2x.png">
+            </div>
+            私人FM
+        </a>
+        <a routerLink="/recsong">
+            <div class="recn_ico">
+                <img src="../../assets/images/cm4_disc_topbtn_daily-ip6@2x.png" alt="" />
+                <span>{{thisday}}</span>
+            </div>
+            每日歌曲推荐
+        </a>
+        <a routerLink="/playlist/3778678?name=云音乐热歌榜">
+            <div class="recn_ico">
+                <img src="../../assets/images/cm2_discover_icn_upbill-ip6@2x.png">
+            </div>
+            云音乐热歌榜
+        </a>
+    </div>
+
+    <a routerLink="../playlist" class="listheader">
+        <span>推荐歌单</span>
+        <img src="../../assets/images/common_icon_arrow@2x.png" alt="" />
+    </a>
+    <div class="flex-boxlist">
+        <a routerLink="/playlist/{{item.id}}" class="tl_cnt" *ngFor="let item of rec_pl">
+            <div class="cover">
+                <img src="{{item.picUrl}}?param=200y200" class="music_cover" />
+            </div>
+            <div class="name">{{item.name}}</div>
+        </a>
+    </div>
+    <!-- -->
+    <div class="listheader">
+        <span>最新音乐</span>
+        <img src="../../assets/images/common_icon_arrow@2x.png" alt="" />
+    </div>
+    <div class="flex-boxlist">
+        <div *ngFor="let item of rec_ns;let idx=index" class="tl_cnt">
+            <div class="cover">
+                <img src="{{item.song.album.picUrl}}?param=200y200" class="music_cover" />
+            </div>
+            <div class="tl_info">
+                <div>{{item.name}}</div>
+                <div class="tli_des">{{item.song.artists[0].name}}</div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+    <div class="listheader">
+        <span>推荐Mv</span>
+        <img src="../../assets/images/common_icon_arrow@2x.png" alt="" />
+    </div>
+    <div class="flex-boxlist  mvs flex-two">
+        <div class="tl_cnt" :key="item.id" *ngFor="let item of rec_mv">
+            <div class="cover">
+                <img src="{{item.picUrl}}?param=320y180" class="music_cover" />
+            </div>
+            <div class="tl_info">
+                <div>{{item.name}}</div>
+                <div class="tli_des">{{item.artistName}}</div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+    <div class="listheader">
+        <span>推荐节目</span>
+        <img src="../../assets/images/common_icon_arrow@2x.png" alt="" />
+    </div>
+    <div class="flex-boxlist">
+        <div class="tl_cnt" *ngFor="let item of rec_dj">
+            <div class="cover">
+                <img src="{{item.picUrl}}?param=200y200" class="music_cover" />
+            </div>
+            <div class="name">{{item.name}}
+            </div>
+        </div>
+    </div>
+</div>

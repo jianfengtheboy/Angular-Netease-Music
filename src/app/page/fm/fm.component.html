@@ -1,0 +1,22 @@
+<div id="playingpage" :class="(playing?'playing':'')">
+    <div class="we-header">
+        <back></back>
+        <div class="we-header-title">{{music.name}} - {{music.ar[0].name}}</div>
+    </div>
+    <div id="playing-bg" class="blurbg" [ngStyle]="{'background':'url('+music.al.picUrl+'?param=500y500)'}"></div>
+    <div id="fm-covermain" [ngClass]="(showlrc?'playinghidden':'')">
+        <img id="fm-cmpic" [src]="music.al.picUrl+'?param=500y500'" />
+    </div>
+    <div id="fm-mdes" [ngClass]="(showlrc?'playinghidden':'')">
+        <span id="fm-mname">{{music.name}}</span>
+        <span id="fm-martist">{{(music.ar||[1])[0].name}}</span>
+    </div>
+    <!-- 歌词 -->
+    <lrc [lrc]="lrcObj" [showlrc]="showlrc" [playtime]="playtime" lrcindex="1" id="lrclist" (click)="showlrc=!showlrc"></lrc>
+    <div id="playing-actwrap">
+        <app-comp-playaction [music]="music" [commentscount]="commentscount" [playtype]="2" [playtime]="playtime" [playing]="playing" (Esetplaying)="Esetplaying($event)" (EseekMusic)="EseekMusic($event)" (EnextFm)="next_music()"></app-comp-playaction>
+    </div>
+</div>
+<audio src="{{playurl}}" (timeupdate)="playingtime($event)" aud id="music" (ended)="next_music()" (canplay)="setplaying(true)">
+    <track kind="subtitles" />
+</audio>

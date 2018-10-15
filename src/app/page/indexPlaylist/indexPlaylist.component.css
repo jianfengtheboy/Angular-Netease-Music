@@ -1,0 +1,52 @@
+.flex-boxlist {
+    min-height: 500px;
+}
+
+#hqpl {
+    position: relative;
+    padding: 1em 0;
+    color: #fff;
+    overflow: hidden;
+}
+
+#hqpl a,
+#hqpl .relistdes {
+    color: #fff;
+}
+
+#hq_title img {
+    height: 1.5em;
+    margin-right: .5em;
+}
+
+#hqpl .fl-image {
+    margin: 0 1em;
+}
+
+#hq_title img:last-child {
+    height: 1em;
+    margin-left: .5em;
+}
+
+#hq_title {
+    font-size: 1.2em;
+    padding-bottom: .5em;
+}
+
+#hqpl .fl-image img {
+    height: 8em;
+    width: 8em;
+}
+
+#plc_header {
+    overflow: hidden;
+    padding: 1em 2% .5em;
+}
+
+#plc_header span {
+    border: 1px solid #ddd;
+    border-radius: 2em;
+    line-height: 2;
+    padding: 0 .5em 0 1em;
+    display: inline-block;
+}

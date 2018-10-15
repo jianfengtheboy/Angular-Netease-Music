@@ -1,0 +1,64 @@
+<weui-infiniteloader (loadmore)="getplaylist(false,$event)" #comp [config]="{percent:90}">
+    <div id="hqpl" [hidden]="!hiqulity.name">
+        <div class="blurbg album_cover" [ngStyle]="{'background-image':'url('+(hiqulity.coverImgUrl)+'?param=500y500)','background-color':'#eee'}"></div>
+        <a class="flexlist flex-image">
+            <div class="flexleft fl-image">
+                <img [src]="hiqulity.coverImgUrl+'?param=200y200'" class="album_cover" />
+            </div>
+            <div class="flexlist" style="border-bottom: none;">
+                <div class="flexmain">
+                    <div id="hq_title">
+                        <img src="../../../assets/images/cm4_slist_icn_hot@2x.png" alt="" />精品歌单
+                        <img src="../../../assets/images/common_icon_arrow@2x.png" alt="" />
+                    </div>
+                    <div>{{hiqulity.name}}</div>
+                    <div class="relistdes">{{hiqulity.copywriter}}</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div id="plc_header">
+        <span (click)="catelist.isShow=true">{{catelist.checked.name}}
+            <img src="../../../assets/images/common_icon_arrow@2x.png" height="16px" alt="" />
+        </span>
+    </div>
+    <div [hidden]="!loaded">
+        <div class='flex-boxlist flex-two'>
+            <div class="tl_cnt cateplaylist" *ngFor="let item of list.playlists" :key="item.id">
+                <a [routerLink]="['/playlist/'+item.id]" [queryParams]="{img:item.coverImgId_str}">
+                    <div class="cover">
+                        <img [src]="item.coverImgUrl+'?param=300y300'" class="music_cover" />
+                        <div class="img_creator">
+                            <img src="../../../assets/images/cm2_icn_userhead@2x.png" alt="">{{item.creator.nickname}}
+                        </div>
+                        <div class="img_playcount">
+                            <img src="../../../assets/images/p0.png" /> {{item.playCount}}
+                        </div>
+                    </div>
+                    <div class="name">{{item.name}}</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <loading [hidden]="!!loaded||list.more"></loading>
+    <div style="height:100%" id="catewrap" [hidden]="!catelist.isShow">
+        <div class="close" (click)="catelist.isShow=false" id="closecatelist"></div>
+        <div id="cateall" (click)="catecheck(-1)">
+            <span class="cl_ico_checked" *ngIf="catelist.checked.name===catelist.res.all.name"></span>
+            {{catelist.res.all.name}}
+        </div>
+        <div class="catelist" *ngFor="let item of catelist.res.categories;let idx=index">
+            <div class="cl_list cl_ico">
+                <span>
+                    <img [src]="'../../../assets/images/cm2_discover_icn_'+idx+'@2x.png'">{{item}}
+                </span>
+            </div>
+            <ng-container *ngFor="let re of catelist.res.sub;let i=index">
+                <div *ngIf="re.category===idx" (click)="catecheck(i)" [ngClass]="'cl_list '+(catelist.checked.name==re.name?'checked':'')">
+                    <span class="cl_ico_hot" *ngIf="re.hot"></span>
+                    <span class="cl_ico_checked" *ngIf="catelist.checked.name===re.name"></span> {{re.name}}
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</weui-infiniteloader>

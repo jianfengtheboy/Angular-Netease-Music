@@ -1,0 +1,45 @@
+<div class="songs">
+    <div *ngFor="let re of list;let idx=index" (click)="playindex(idx,re,privileges)" [ngClass]="'flexlist flex-center '+(re.id===curplay?'cur ':' ')+(toplist==1?'istop ':' ')+(nonum===1?' ':'ml ')+((re.privilege&&re.privilege.st<0)||(privileges&&privileges[idx].st<0)?'disabled':'')">
+        <div class="flexleft flexnum " *ngIf="nonum===1">
+            <div *ngIf="re.id===curplay">
+                <img src="../../../assets/images/aal.png" alt="">
+            </div>
+            <div *ngIf="re.id!==curplay">
+                <span :class="(toplist&&idx<3?'topindex':'')">{{idx+1}}</span>
+                <div *ngIf="toplist==1">
+                    <div class="ftp" *ngIf="trackids[idx].ratio">
+                        <img src="../../../assets/images/xv.png" />{{trackids[idx].ratio}}%</div>
+                    <div class="ftp" *ngIf="!trackids[idx].ratio&&trackids[idx].v">
+                        <img src="../../../assets/images/wu.png" *ngIf="idx>trackids[idx].v" />
+                        <img src="../../../assets/images/xu.png" *ngIf="trackids[idx].v>idx" />
+                        <img src="../../../assets/images/xr.png" *ngIf="trackids[idx].v==idx" />
+                        <span>{{(trackids[idx].v>idx)?(trackids[idx].v-idx):(idx-trackids[idx].v)}}</span>
+                    </div>
+                    <div class="ftp" *ngIf="!trackids[idx].ratio&&!trackids[idx].v">
+                        <img src="../../../assets/images/xy.png" class="tpnew" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flexlist">
+            <div class="flexleft " *ngIf="re.id===curplay&&nonum!==1">
+                <div>
+                    <img src="../../../assets/images/aal.png" alt="">
+                </div>
+            </div>
+            <div class="flexmain">
+                <div>{{re.name}}<span *ngIf="re.alia.length">（{{re.alia}}）</span></div>
+                <div class="relistdes">{{re.ar[0].name}} - {{re.al.name}}</div>
+            </div>
+            <div class="flexact">
+                <a class="fa_list fa_mv" *ngIf="re.mv!=0">
+                    <img src="../../../assets/images/l0.png" />
+                </a>
+                <div class="fa_list">
+                    <img src="../../../assets/images/cm2_list_btn_more@2x.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <weui-toast #toast [text]="'应合作方的要求，此歌曲已下架'" [icon]="''"></weui-toast>
+</div>

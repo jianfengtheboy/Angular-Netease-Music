@@ -1,0 +1,27 @@
+.flexlist .cover {
+    flex: 0 0 32%;
+    margin: 1% 0 0 0;
+    padding-top: 32%;
+}
+
+.flexlist {
+    width: 100%
+}
+
+.sort_fl_list {
+    flex: 0 0 100%;
+    line-height: 2
+}
+
+.sortlist .flexlist {
+    flex-flow: wrap;
+    align-content: center;
+}
+
+.flexlist .flexlist {
+    padding: .3em;
+}
+
+.sort_fl_list span {
+    color: #999;
+}

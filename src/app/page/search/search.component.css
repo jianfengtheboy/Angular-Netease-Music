@@ -1,0 +1,111 @@
+#searcheader {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+    max-width: 750px;
+}
+
+#searcheader form {
+    background: #BB2C08;
+    color: #fff;
+}
+
+.rehide {
+    visibility: hidden;
+}
+
+.mint-button--default.is-plain {
+    border: none;
+    color: #fff;
+}
+
+#searcheader label {
+    display: flex;
+    flex: 1;
+    padding: 6px;
+    line-height: 28px
+}
+
+#searcheader span {
+    padding-left: 8px
+}
+
+#searcheader input {
+    flex: 1;
+    border: none;
+    height: 28px;
+    border-radius: 2em;
+    color: #333;
+    background: #fff;
+    padding: 0 1em;
+    background: url(../../../assets/images/cm2_list_icn_search@2x.png) 8px center no-repeat #fff;
+    padding-left: 30px;
+    -webkit-background-size: auto 16px;
+    background-size: auto 16px;
+}
+
+.sr_lists img {
+    height: 2.6em;
+}
+
+.smt_right {
+    float: right;
+    width: 2em;
+}
+
+.sr_lists .flexnum {
+    flex: 0 0 1.8em;
+    text-align: left;
+}
+
+.sr_lists .flexnum img {
+    height: 1.2em
+}
+
+.hot_list {
+    overflow: hidden;
+    padding: 1em;
+}
+
+.hot_list span {
+    display: inline-block;
+    height: 32px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 0 14px;
+    font-size: 14px;
+    line-height: 32px;
+    color: #333;
+    border: 1px solid #dfdfdf;
+    border-radius: 2em;
+}
+
+#suggest {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: #fff;
+}
+
+#suggest .flexlist .flexlist {
+    padding: .7em 0;
+}
+
+.flexlist:last-child .flexlist {
+    border-bottom: 1px solid #e1e2e3;
+}
+
+#suggest .flexnum {
+    padding-left: .5em;
+}
+
+.gray_title {
+    padding: 1% 2% 0;
+    color: #999;
+    font-size: .8em;
+    line-height: 2;
+}

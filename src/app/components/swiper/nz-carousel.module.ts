@@ -6,12 +6,12 @@ import { NzCarouselComponent } from './nz-carouse-component';
 
 @NgModule({
     declarations: [NzCarouselComponent, NzCarouselContentDirective],
-    exports : [NzCarouselComponent, NzCarouselContentDirective],
-    imports : [CommonModule]
+    exports: [NzCarouselComponent, NzCarouselContentDirective],
+    imports: [CommonModule]
 })
 
 export class NzCarouselModule {
-    static forRoot() : ModuleWithProviders {
-        return { ngModule : NzCarouselModule, providers : [] }
+    static forRoot(): ModuleWithProviders {
+        return { ngModule: NzCarouselModule, providers: [] };
     }
 }

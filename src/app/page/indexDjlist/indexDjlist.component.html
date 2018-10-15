@@ -1,0 +1,57 @@
+<weui-infiniteloader (loadmore)="getdjlist($event)" #comp [config]="{percent:95,height:'80vh'}">
+    <div [hidden]="!djcate.categories.length">
+        <nz-carousel nzAutoPlay>
+            <div nz-carousel-content *ngFor="let item of [1,2,3]">
+                <div class="djcatewrap">
+                    <ng-container *ngFor="let re of djcate.categories;let idx=index">
+                        <div *ngIf="(idx<item*8)&&(idx>=(item-1)*8)" class="djcatelist" data-djtype="re.id">
+                            <img [src]="re.pic56x56Url" class="slide-image" width="56" height="56" />
+                            <div>{{re.name}}</div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </nz-carousel>
+    </div>
+    <div [hidden]="!djrecs.rec_p.name">
+        <div class="listheader">{{djrecs.rec_p.name}}</div>
+        <div class="playlist">
+            <a [routerLink]="['/program/'+re.id]" class="flexlist flex-image" *ngFor="let re of djrecs.rec_p.programs">
+                <div class="flexleft fl-image">
+                    <img [src]="re.coverUrl+'?param=100y100'" class="album_cover" />
+                </div>
+                <div class="flexlist">
+                    <div class="flexmain">
+                        <div>{{re.name}}</div>
+                        <div class="relistdes">{{re.reason}}</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div [hidden]="!djrecs.rec_d.name">
+        <div class="listheader">{{djrecs.rec_d.name}}</div>
+        <div class='flex-boxlist'>
+            <ng-container *ngFor="let item of djrecs.rec_d.djRadios;let idx=index">
+                <a [routerLink]="['/radio/'+item.id]" class="tl_cnt cateplaylist" *ngIf="idx<6">
+                    <div class="cover">
+                        <img [src]="item.picUrl+'?param=200y200'" class="music_cover" />
+                    </div>
+                    <div class="name">{{item.copywriter}}</div>
+                </a>
+            </ng-container>
+        </div>
+    </div>
+    <div class="listheader" *ngIf="djlist.length">热门电台</div>
+    <div class='flex-boxlist flex-two'>
+        <a [routerLink]="['/radio/'+item.id]" class="tl_cnt cateplaylist" *ngFor="let item of djlist">
+            <div class="cover">
+                <img [src]="item.picUrl+'?param=200y200'" class="music_cover" />
+                <div class="img_playcount">
+                    <img src='../../../assets/images/cm2_list_icn_subscribe@2x.png' />{{item.subCount}}订阅
+                </div>
+            </div>
+            <div class="name">{{item.name}}</div>
+        </a>
+    </div>
+</weui-infiniteloader>

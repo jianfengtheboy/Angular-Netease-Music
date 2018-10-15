@@ -1,0 +1,24 @@
+.mint-swipe {
+    height: 8em;
+}
+
+.djcatewrap {
+    overflow: hidden
+}
+
+.djcatelist {
+    text-align: center;
+    flex: 0 0 25%;
+    height: auto;
+    font-size: 1rem;
+}
+
+.djcatelist img {
+    width: auto;
+    height: 2em;
+    margin: .5em 0 .2em
+}
+
+.djcatelist div {
+    font-size: .8em
+}

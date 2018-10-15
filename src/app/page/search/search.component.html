@@ -1,0 +1,167 @@
+<weui-infiniteloader (loadmore)="search(false,true,$event)" #comp [config]='{percent:90}' style="padding-top:82px;">
+    <div id="searcheader">
+        <form (ngSubmit)="search(true,false)">
+            <label><input type="search" [value]="value" [(ngModel)]="value" name="value" required autofocus="autofocus" (input)="search_sug()" placeholder="搜索音乐、电台、歌手"/><back [showIcon]="false"><span>取消</span></back></label>
+        </form>
+        <app-comp-tab [ngClass]="(!value||!loaded?'rehide':'')" [tabs]="tab" [tabidx]="cur" (Eswitchtab)="switchtab($event)"></app-comp-tab>
+    </div>
+    <div id="suggest" *ngIf="value&&focus&&suggest.order">
+        <div *ngIf="suggest['artists']" class="sr_lists flexlist flex-center" (click)="searchFkey(suggest['artists'][0].name)">
+            <div class="flexnum"><img src="../../assets/images/cm2_list_icn_search@2x.png" alt="" /></div>
+            <div class="flexlist">
+                <div class="flexmain">{{suggest['artists'][0].name}}</div>
+            </div>
+        </div>
+        <ng-container *ngIf="suggest['songs']">
+            <div class="sr_lists flexlist flex-center" (click)="searchFkey((re.artists[0].name+re.name))" *ngFor="let re of suggest['songs']">
+                <div class="flexnum"><img src="../../assets/images/cm2_list_icn_search@2x.png" alt="" /></div>
+                <div class="flexlist">
+                    <div class="flexmain">{{re.artists[0].name}} {{re.name}}</div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div id="hot" *ngIf="!value||!loaded">
+        <div class="sm_title">热门搜索</div>
+        <div class="hot_list">
+            <span (click)="searchFkey(re.first)" *ngFor="let re of hot">{{re.first}}</span>
+        </div>
+    </div>
+    <div id="recent" *ngIf="!value||!loaded">
+        <div class="sm_title">历史搜索 <span class="smt_right" (click)="clearecent(1)"><img src="../../assets/images/cm2_act_delete@2x.png" alt="" /></span></div>
+        <div class="sr_lists flexlist flex-center ml" (click)="searchFkey(re)" *ngFor="let re of recent;let idx=index">
+            <div class="flexlist">
+                <div class="flexnum"><img src="../../assets/images/cm2_list_search_time@2x.png" alt="" /></div>
+                <div class="flexmain">{{re}}</div>
+                <div class="flexact" (click)="clearecent(0,idx,$event)">
+                    <img src="../../assets/images/cm2_playlist_icn_dlt@2x.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [ngClass]="(!value||!loaded?'rehide':'')">
+        <div>
+            <div id="0" [hidden]="cur!=0">
+                <div *ngIf="multimatch.orders">
+                    <div class="gray_title">最佳匹配</div>
+                    <div *ngFor="let item of multimatch.orders">
+                        <a :to="{name:item,params:{id:re.id},query:{img:re.picId_str||re.picId||re.pic}}" [ngClass]="'flexlist flex-image '+item" *ngFor="let re of multimatch[item]">
+                            <div class="flexlist">
+                                <div class="flexleft fl-image">
+                                    <img [src]="(re.picUrl||re.cover||re.avatarUrl||re.coverUrl)+'?param=100y100'" class="album_cover" />
+                                </div>
+                                <div class="flexmain">
+                                    <div>{{mo2name(item)}}：{{re.name||re.nickname||re.title}} <span class="fm_tdes" *ngIf="re.trans">({{re.trans}})</span></div>
+                                    <div class="relistdes" *ngIf="re.artistName">{{re.artistName}}</div>
+                                </div>
+                                <div class="flexact">
+                                    <img src="../../assets/images/cm2_runfm_icn_arr@2x.png" class="fa_list " width="12" alt="" />
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <app-comp-songlist [list]="sts[0].relist.songs"></app-comp-songlist>
+                <div class="cntloading" *ngIf="sts[0].loaded&&!sts[0].relist.songs">暂无结果</div>
+            </div>
+            <div id="1" class="artists " [hidden]="cur!=1">
+                <a :to="{name: 'artist',params:{id:re.id},query:{img:re.picId}}" class="flexlist flex-image" *ngFor="let re of sts[1].relist.artists">
+                    <div class="flexleft fl-image">
+                        <img [src]="re.img1v1Url+'?param=100y100'" class="album_cover" />
+                    </div>
+                    <div class="flexlist">
+                        <div class="flexmain">
+                            <div>{{re.name}}
+                                <span class="fm_tdes" *ngIf="re.trans">({{re.trans}})</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="cntloading" *ngIf="sts[1].loaded&&!sts[1].relist.artists">暂无结果</div>
+            </div>
+            <div id="2" class="albums " [hidden]="cur!=2">
+                <a :to="{name: 'album',params:{id:re.id},query:{img:re.picId||re.pic}}" class="flexlist flex-image" *ngFor="let re of sts[2].relist.albums">
+                    <div class="flexleft fl-image">
+                        <img [src]="re.picUrl+'?param=100y100'" class="album_cover" />
+                        <img class="albums_cover" src="../../assets/images/a6l.png" />
+                    </div>
+                    <div class="flexlist">
+                        <div class="flexmain">
+                            <div>{{re.name}}
+                                <span class="fm_tdes" *ngIf="re.alias.length">({{re.alias}})</span>
+                            </div>
+                            <div class="relistdes">{{re.artist.name}}
+                                <span *ngIf="re.artist.alias.length">({{re.artist.alias}})</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="cntloading" *ngIf="sts[2].loaded&&!sts[2].relist.albums">暂无结果</div>
+            </div>
+            <div id="3" class="playlist " [hidden]="cur!=3">
+                <app-comp-pl [list]="sts[3].relist.playlists"></app-comp-pl>
+                <div class="cntloading" *ngIf="sts[3].loaded&&!sts[3].relist.playlists">暂无结果</div>
+            </div>
+            <div id="4" [hidden]="cur!=4">
+                <div class="flex-boxlist mvs flex-two">
+                    <a :to="{name:'mv',params:{id:re.id}}" class="tl_cnt" *ngFor="let re of sts[4].relist.mvs" :key="re.id">
+                        <div class="cover">
+                            <div class="img_playcount">
+                                <img src="../../assets/images/video.png" style="height:20rpx;width:28rpx;" />{{re.playCount}}</div>
+                            <img [src]="re.cover+'?param=320y180'" class="mv_cover" />
+                        </div>
+                        <div class="tl_info">
+                            <div>{{re.name}}</div>
+                            <div class="tli_des">{{re.artistName}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="cntloading" *ngIf="sts[4].loaded&&!sts[4].relist.mvs">暂无结果</div>
+            </div>
+            <div id="5" [hidden]="cur!=5">
+                <div class="sm_title" *ngIf="sts[5].relist.djRadios">电台</div>
+                <a [routerLink]="['/radio/'+re.id]" class="flexlist flex-image" *ngFor="let re of sts[5].relist.djRadios" :key="re.id">
+                    <div class="flexleft fl-image">
+                        <img [src]="re.picUrl+'?param=100y100'" class="album_cover" />
+                    </div>
+                    <div class="flexlist">
+                        <div class="flexmain">
+                            <div>{{re.name}}</div>
+                            <div class="relistdes">{{re.dj.nickname}}</div>
+                        </div>
+                    </div>
+                </a>
+                <div class="sm_title" *ngIf="sts[5].relist.djprograms">节目</div>
+                <a [routerLink]="['/program/'+re.id]" class="flexlist flex-image" *ngFor="let re of sts[5].relist.djprograms">
+                    <div class="flexleft fl-image">
+                        <img [src]="re.coverUrl+'?param=100y100'" class="album_cover" />
+                    </div>
+                    <div class="flexlist">
+                        <div class="flexmain">
+                            <div>{{re.name}}</div>
+                            <div class="relistdes">{{re.dj.brand}} {{'Vol.'+re.serialNum}}</div>
+                        </div>
+                    </div>
+                </a>
+                <div class="cntloading" *ngIf="sts[5].loaded&&!sts[5].relist.djprograms&&!sts[5].relist.djRadios">暂无结果</div>
+            </div>
+            <div id="6" class="userprofiles" [hidden]="cur!=6">
+                <a :to="{name:'user',params:{id:re.userId}}" class="flexlist flex-image" *ngFor="let re of sts[6].relist.userprofiles">
+                    <div class="flexleft fl-image">
+                        <img [src]="re.avatarUrl+'?param=100y100'" class="user_avator" />
+                    </div>
+                    <div class="flexlist">
+                        <div class="flexmain">
+                            <div>{{re.nickname}}
+                                <img src="../../assets/images/cm2_pro_icn_boy@2x.png" *ngIf="re.gender===1" />
+                                <img src="../../assets/images/cm2_pro_icn_girl@2x.png" *ngIf="re.gender!==1" />
+                            </div>
+                            <div class="relistdes">{{re.signature}}</div>
+                        </div>
+                    </div>
+                </a>
+                <div class="cntloading" *ngIf="sts[6].loaded&&!sts[6].relist.userprofiles[0]">暂无结果</div>
+            </div>
+        </div>
+    </div>
+</weui-infiniteloader>

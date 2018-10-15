@@ -1,0 +1,11 @@
+<div id="lrcontent" [ngClass]="{'playinghidden':!showlrc,'noscroll':(lrc.scroll&&!lrc.nolyric&&!lrc.uncollected)}">
+    <div id="lrcwrap" *ngIf="lrc" [ngStyle]="{'transform':'translateY('+(-lrcindex*100/(lrc.lrc.length+6))+'%)'}">
+        <div *ngIf="lrc.nolyric" class="notext">纯音乐，无歌词</div>
+        <div *ngIf="lrc.scroll&&!lrc.nolyric&&!lrc.uncollected" class="notext">*歌词不支持滚动*</div>
+        <div *ngIf="lrc.uncollected" class="notext">暂无歌词</div>
+        <div *ngFor="let item of lrc.lrc;let idx=index" id="{{item.lrc_sec}}" [ngClass]="((idx===lrcindex)&&!lrc.scroll?'lrcur':'')">
+            <span>{{item.lrc}}<br/>{{item.tlrc}}</span>
+        </div>
+    </div>
+    <div class="cnloading" *ngIf="lrc.code&&(lrc.code!=200)">加载出错了</div>
+</div>

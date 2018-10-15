@@ -1,0 +1,99 @@
+<weui-infiniteloader (loadmore)="getprogram(true,$event)" #comp [config]="{percent:95}" id="fixheader">
+    <div class="we-header">
+        <back></back>
+        <div class="we-header-title">{{djradio.name||'电台'}}</div>
+        <app-comp-playicon></app-comp-playicon>
+    </div>
+    <div id="artist_header" ref="main" :style="{top:-st+'px'}">
+        <img src="../../assets/images/cm2_default_act_320@2x.png" alt="" />
+        <img [src]="djradio.picUrl+'?param=750y750'" :style="{'filter':'blur('+opa+'px) brightness(.8)'} " />
+        <div id="ahw_wrap">
+            <div :style="{'visibility':(opa1>.4?'visible':'hidden')}">
+                <div class="ahw_name">{{djradio.name||' '}}
+                    <p>{{djradio.subCount|Pplaycount}}人订阅</p>
+                </div>
+                <div class="ahw_btn" (click)="djradio_sub()">
+                    <img src="../../assets/images/cm2_vehicle_icn_subscribe@2x.png" *ngIf="!djradio.subed" alt="" />
+                    <img src="../../assets/images/cm2_vehicle_icn_subscribed@2x.png" *ngIf="djradio.subed" alt="" /> 订阅</div>
+            </div>
+        </div>
+    </div>
+    <app-comp-tab [tabs]="tab" [tabidx]="cur" (Eswitchtab)="switchtab($event)" class="tab-split"></app-comp-tab>
+    <div class="tab_cnt" [hidden]="cur!==0">
+        <div id="djradio_info">
+            <div class="infowrap">主播</div>
+            <div class="infowrap">
+                <a :to="{path:'/playlist',param:{id:djradio.dj.userId}}" class="flexlist flex-image">
+                    <div class="flexlist nonebd">
+                        <div class="flexleft fl-image">
+                            <img [src]="djradio.dj.avatarUrl+'?param=100y100'" class="user_avator" />
+                        </div>
+                        <div class="flexmain">
+                            <div>{{djradio.dj.nickname}}
+                            </div>
+                            <div class="relistdes">{{djradio.dj.description}}</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="infowrap">
+                电台内容简介
+                <div class="info_des">
+                    <p>分类：<span class="tags">{{djradio.category}}</span></p>
+                    {{djradio.desc}}
+                </div>
+            </div>
+            <div class="sm_title" *ngIf="djradio.commentDatas.length">热门评论</div>
+            <div class="limg_list rec_list " *ngFor="let item of djradio.commentDatas">
+                <div class="rec_avatar">
+                    <img class="user_avator" [src]="item.userProfile.avatarUrl+'?param=60y60'" />
+                </div>
+                <div class="rec_main">
+                    <div class="rm_header">
+                        <span class="fmh_name">{{item.userProfile.nickname}}</span>
+                    </div>
+                    <div class="rm_cnt">
+                        <div class="WxEmojidiv">
+                            <span *ngFor="let re of item.content|Pemoji" :key="re.id">
+                <span *ngIf="re.node == 'text'">{{re.text}}</span>
+                            <span *ngIf="re.node == 'element'"><img class="wxEmoji" [src]="'http://s1.music.126.net/style/web2/emt//emoji_'+re.text+'.png'" /></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab_cnt" [hidden]="cur!==1">
+        <div class="sm_title">共{{programs.count}}期</div>
+        <div class="songs">
+            <a *ngFor="let re of programs.programs;let idx=index" [ngClass]="'flexlist flex-center '+(re.id==music.id?'cur':'')" [routerLink]="['/program/'+re.id]" :key="re.id">
+                <div class="flexleft flexnum ">
+                    <div *ngIf="re.id===music.id">
+                        <img src="../../assets/images/aal.png" alt="" />
+                    </div>
+                    <div *ngIf="re.id!==music.id">
+                        <span>{{idx+1}}</span>
+                    </div>
+                </div>
+                <div class="flexlist">
+                    <div class="flexmain">
+                        <div>{{re.name}}</div>
+                        <div class="relistdes">
+                            <span>{{re.createTime|PdateM}} </span>
+                            <img src="../../assets/images/cm4_list_icn_play_time@2x.png" alt="" />
+                            <span> {{re.listenerCount|Pplaycount}}</span>
+                            <img src="../../assets/images/cm4_list_icn_time@2x.png" alt="" />
+                            <span>{{re.duration|PdateS}}</span>
+                        </div>
+                    </div>
+                    <div class="flexact">
+                        <div class="fa_list">
+                            <img src="../../assets/images/cm2_list_btn_more@2x.png" />
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</weui-infiniteloader>

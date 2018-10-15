@@ -1,31 +1,31 @@
-import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core'
-
-import { isNotNil } from '../../utils/check'
+import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { isNotNil } from '../../utils/check';
 
 @Directive({
-    selector : '[nz-carousel-content]',
-    host : {
-        '[class.slick-slide]':'true'
+    selector: '[nz-carousel-content]',
+    host: {
+        '[class.slick-slide]': 'true'
     }
 })
+
 export class NzCarouselContentDirective implements OnInit {
     private _active = false;
-    private _width : Number = 0;
-    private _left : number;
-    private _top : number;
+    private _width: Number = 0;
+    private _left: number;
+    private _top: number;
     private _fadeMode = false;
-    el : HTMLElement;
+    el: HTMLElement;
 
     set width(value: Number) {
         this._width = value;
         this.renderer.setStyle(this.el, 'width', `${this.width}px`);
     }
 
-    get width() : Number {
+    get width(): Number {
         return this._width;
     }
 
-    set left(value : number) {
+    set left(value: number) {
         this._left = value;
         if (isNotNil(this.left)) {
             this.renderer.setStyle(this.el, 'left', `${this.left}px`);
@@ -34,11 +34,11 @@ export class NzCarouselContentDirective implements OnInit {
         }
     }
 
-    get left() : number {
+    get left(): number {
         return this._left;
     }
 
-    set top(value : number) {
+    set top(value: number) {
         this._top = value;
         if (isNotNil(this.top)) {
             this.renderer.setStyle(this.el, 'top', `${this.top}px`);
@@ -47,11 +47,11 @@ export class NzCarouselContentDirective implements OnInit {
         }
     }
 
-    get top() : number {
+    get top(): number {
         return this._top;
     }
 
-    set isActive(value : boolean) {
+    set isActive(value: boolean) {
         this._active = value;
         this.updateOpacity();
         if (this.isActive) {
@@ -61,11 +61,11 @@ export class NzCarouselContentDirective implements OnInit {
         }
     }
 
-    get isActive() : boolean {
+    get isActive(): boolean {
         return this._active;
     }
 
-    set fadeMode(value : boolean) {
+    set fadeMode(value: boolean) {
         this._fadeMode = value;
         if (this.fadeMode) {
             this.renderer.setStyle(this.el, 'position', 'relative');
@@ -75,21 +75,21 @@ export class NzCarouselContentDirective implements OnInit {
         this.updateOpacity();
     }
 
-    get fadeMode() : boolean {
+    get fadeMode(): boolean {
         return this._fadeMode;
     }
 
-    updateOpacity() : void {
+    updateOpacity(): void {
         if (this.fadeMode) {
             this.renderer.setStyle(this.el, 'opacity', this.isActive ? 1 : 0);
         }
     }
 
-    constructor(private elementRef: ElementRef, private renderer : Renderer2) {
+    constructor(private elementRef: ElementRef, private renderer: Renderer2) {
         this.el = this.elementRef.nativeElement;
     }
 
-    ngOnInit() : void {
+    ngOnInit(): void {
         this.renderer.setStyle(this.el, 'transition', 'opacity 500ms ease');
     }
 }

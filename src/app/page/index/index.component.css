@@ -2,18 +2,18 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 100%
 }
 
-#rec-nav {
+#rec_nav {
     display: flex;
     text-align: center;
     width: 100%;
     font-size: 0.667rem;
 }
 
-#rec-nav a {
-    padding:1.5em 0 1em;
+#rec_nav a {
+    padding: 1.5em 0 1em;
     display: block;
     flex: 1;
     color: #000;
@@ -25,14 +25,14 @@
     padding-top: 50%;
     font-size: 18px;
     color: #bb2c08;
-    border:1px solid #bb2c08;
+    border: 1px solid #bb2c08;
     border-radius: 50%;
     margin: 0 auto 0.5em;
     font-weight: 100;
     position: relative;
     line-height: 0;
     overflow: hidden;
-    box-sizing: border-box;
+    box-sizing: content-box;
 }
 
 .recn_ico span {
@@ -62,7 +62,7 @@
     display: block;
     margin: 1em auto;
     border-radius: 50%;
-    border:1px solid #999;
+    border: 1px solid #999;
 }
 
 .fixedtab {
@@ -135,7 +135,7 @@
     -webkit-touch-callout: none;
     -ms-touch-action: pan-y;
     touch-action: pan-y;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent
 }
 
 .ant-carousel .slick-list {
@@ -143,83 +143,83 @@
     overflow: hidden;
     display: block;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .ant-carousel .slick-list:focus {
-    outline: none;
+    outline: none
 }
 
 .ant-carousel .slick-list.dragging {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .ant-carousel .slick-slider .slick-list,
 .ant-carousel .slick-slider .slick-track {
     -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    transform: translateZ(0)
 }
 
 .ant-carousel .slick-track {
     position: relative;
     left: 0;
     top: 0;
-    display: block;
+    display: block
 }
 
 .ant-carousel .slick-track:after,
 .ant-carousel .slick-track:before {
     content: "";
-    display: table;
+    display: table
 }
 
 .ant-carousel .slick-track:after {
-    clear: both;
+    clear: both
 }
 
 .slick-loading .ant-carousel .slick-track {
-    visibility: hidden;
+    visibility: hidden
 }
 
 .ant-carousel .slick-slide {
     float: left;
     height: 100%;
     min-height: 1px;
-    display: none;
+    display: none
 }
 
 [dir=rtl] .ant-carousel .slick-slide {
-    float: right;
+    float: right
 }
 
 .ant-carousel .slick-slide img {
-    display: block;
+    display: block
 }
 
 .ant-carousel .slick-slide.slick-loading img {
-    display: none;
+    display: none
 }
 
 .ant-carousel .slick-slide.dragging img {
-    pointer-events: none;
+    pointer-events: none
 }
 
 .ant-carousel .slick-initialized .slick-slide {
-    display: block;
+    display: block
 }
 
 .ant-carousel .slick-loading .slick-slide {
-    visibility: hidden;
+    visibility: hidden
 }
 
 .ant-carousel .slick-vertical .slick-slide {
     display: block;
     height: auto;
-    border:1px solid transparent;
+    border: 1px solid transparent
 }
 
 .ant-carousel .slick-arrow.slick-hidden {
-    display: none;
+    display: none
 }
 
 .ant-carousel .slick-next,
@@ -233,7 +233,7 @@
     top: 50%;
     margin-top: -18px;
     padding: 0;
-    border:0;
+    border: 0;
     text-align: center;
     border-radius: 50%;
     background-color: #1f2d3d3b;
@@ -246,29 +246,29 @@
 .ant-carousel .slick-prev,
 .ant-carousel .slick-prev:focus,
 .ant-carousel .slick-prev:hover {
-    outline: none;
+    outline: none
 }
 
 .ant-carousel .slick-next:focus:before,
 .ant-carousel .slick-next:hover:before,
 .ant-carousel .slick-prev:focus:before,
 .ant-carousel .slick-prev:hover:before {
-    opacity: 1;
+    opacity: 1
 }
 
 .ant-carousel .slick-next.slick-disabled:before,
 .ant-carousel .slick-prev.slick-disabled:before {
-    opacity: .25;
+    opacity: .25
 }
 
 .ant-carousel .slick-prev {
-    left: 16px;
+    left: 16px
 }
 
 .ant-carousel .slick-prev:before,
 .ant-carousel .slick-next:before {
     cursor: pointer;
-    border:2px solid #fff;
+    border: 2px solid #fff;
     border-width: 2px 0 0 2px;
     transform: rotate(-45deg);
     width: 6px;
@@ -278,7 +278,7 @@
 }
 
 .ant-carousel .slick-next {
-    right: 16px;
+    right: 16px
 }
 
 .ant-carousel .slick-next:before {
@@ -294,7 +294,7 @@
     text-align: center;
     padding: 0;
     width: 100%;
-    height: 3px;
+    height: 3px
 }
 
 .ant-carousel .slick-dots li {
@@ -303,11 +303,11 @@
     vertical-align: top;
     text-align: center;
     margin: 0 2px;
-    padding: 0;
+    padding: 0
 }
 
 .ant-carousel .slick-dots li button {
-    border:0;
+    border: 0;
     cursor: pointer;
     background: #aaa;
     opacity: .3;
@@ -324,7 +324,7 @@
 
 .ant-carousel .slick-dots li button:focus,
 .ant-carousel .slick-dots li button:hover {
-    opacity: .75;
+    opacity: .75
 }
 
 .ant-carousel .slick-dots li.slick-active button {
@@ -334,30 +334,30 @@
 
 .ant-carousel .slick-dots li.slick-active button:focus,
 .ant-carousel .slick-dots li.slick-active button:hover {
-    opacity: 1;
+    opacity: 1
 }
 
 .ant-carousel-vertical .slick-dots {
     width: 3px;
-    height: auto;
     bottom: auto;
     right: 12px;
     top: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
+    height: auto
 }
 
 .ant-carousel-vertical .slick-dots li {
     margin: 0 2px;
-    vertical-align: baseline;
+    vertical-align: baseline
 }
 
 .ant-carousel-vertical .slick-dots li button {
     width: 3px;
-    height: 16px;
+    height: 16px
 }
 
 .ant-carousel-vertical .slick-dots li.slick-active button {
     width: 3px;
-    height: 24px;
+    height: 24px
 }
