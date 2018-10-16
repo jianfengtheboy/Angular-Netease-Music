@@ -1,13 +1,6 @@
-<!--
-<el-carousel arrow="always" [height]="bannerheight">
-    <el-carousel-item *ngFor="let item of banner">
-        <img src="{{item.pic}}" class="banner-item" alt="">
-    </el-carousel-item>
-</el-carousel>
- -->
 <nz-carousel nzAutoPlay>
     <div nz-carousel-content *ngFor="let item of banner">
-        <img src="{{item.pic}}" class="banner-item" alt="">
+        <img src="{{item.picUrl}}" class="banner-item" alt="">
     </div>
 </nz-carousel>
 <div *ngIf="!loaded" id="album_loading">
@@ -36,7 +29,6 @@
             云音乐热歌榜
         </a>
     </div>
-
     <a routerLink="../playlist" class="listheader">
         <span>推荐歌单</span>
         <img src="../../assets/images/common_icon_arrow@2x.png" alt="" />
@@ -49,7 +41,6 @@
             <div class="name">{{item.name}}</div>
         </a>
     </div>
-    <!-- -->
     <div class="listheader">
         <span>最新音乐</span>
         <img src="../../assets/images/common_icon_arrow@2x.png" alt="" />
@@ -65,9 +56,8 @@
             </div>
         </div>
     </div>
-    <!-- -->
     <div class="listheader">
-        <span>推荐Mv</span>
+        <span>推荐MV</span>
         <img src="../../assets/images/common_icon_arrow@2x.png" alt="" />
     </div>
     <div class="flex-boxlist  mvs flex-two">
@@ -81,7 +71,6 @@
             </div>
         </div>
     </div>
-    <!-- -->
     <div class="listheader">
         <span>推荐节目</span>
         <img src="../../assets/images/common_icon_arrow@2x.png" alt="" />

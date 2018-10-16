@@ -16,9 +16,9 @@ export default {
                     c.data.result,
                     d.data.result,
                     e.data.result
-                ]);
+                ])
             })
-        );
+        )
     },
     index_plcate() {
        // 歌单类型分类列表
@@ -32,9 +32,9 @@ export default {
     },
     index_dj() {
         //首页电台页内容：电台分类，推荐节目，推荐电台，电台列表
-        const cate = axios('djradio/catelist')
+        const cate = axios('dj/catelist')
         const rec_p = axios('program/recommend')
-        const rec_dj = axios('djradio/recommend')
+        const rec_dj = axios('personalized/recommend')
         const djlist = this.index_djlist(0)
         return axios.all([cate, rec_p, rec_dj, djlist]).then(
             axios.spread(function (a, b, c, d) {
@@ -44,7 +44,7 @@ export default {
     },
     index_djlist(offset) {
         //电台列表
-        return axios('djradio/hot?limit=' + limit + '&offset=' + offset)
+        return axios('dj/hot?limit=' + limit + '&offset=' + offset)
     },
     index_hqpl(cat, offset) {
         //精品歌单
@@ -68,17 +68,17 @@ export default {
         )
     },
     async music_detail(id) {
-        return axios('music/detail?id=' + id)
+        return axios('song/detail?ids=' + id)
     },
     music_url(id) {
-        return axios('music/url?id=' + id + '&br=128000')
+        return axios('song/url?id=' + id + '&br=128000')
     },
     comments(id, offset, type) {
         id = (type === 1 ? '' : type === 3 ? 'A_DJ_1_' : 'R_SO_4_') + id
         return axios('comments?id=' + id + '&offset=' + offset + '&limit=' + limit)
     },
     fm() {
-        return axios('fm')
+        return axios('personal_fm')
     },
     lyric(id) {
         return axios('lyric?id=' + id)

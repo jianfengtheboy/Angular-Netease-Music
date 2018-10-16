@@ -1,4 +1,4 @@
-<weui-infiniteloader (loadmore)="search(false,true,$event)" #comp [config]='{percent:90}' style="padding-top:82px;">
+<weui-infiniteloader (loadmore)="search(false,true,$event)" #comp [config]='{percent:90}' style="padding-top:82px;display:block;">
     <div id="searcheader">
         <form (ngSubmit)="search(true,false)">
             <label><input type="search" [value]="value" [(ngModel)]="value" name="value" required autofocus="autofocus" (input)="search_sug()" placeholder="搜索音乐、电台、歌手"/><back [showIcon]="false"><span>取消</span></back></label>

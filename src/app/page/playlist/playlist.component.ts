@@ -3,8 +3,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import Api from '../../app.api';
 import { id2Url } from '../../utils/base64';
-import {Store} from '@ngrx/store';
-import {Music, initMusic} from '../../store/music/music.model';
+import { Store } from '@ngrx/store';
+import { Music, initMusic } from '../../store/music/music.model';
 
 @Component({
     selector: 'app-playlist',

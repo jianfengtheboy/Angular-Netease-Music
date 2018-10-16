@@ -51,7 +51,7 @@ html {
 
 .weui-tabbar {
     background-color: #333;
-    z-index: 9999;
+    z-index: 10;
 }
 
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon,
@@ -635,7 +635,7 @@ a {
 .tab {
     display: flex;
     border-bottom: 1px solid rgba(200, 200, 200, .5);
-    background: rgba(240, 240, 240, .8);
+    background: rgba(240, 240, 240, .9);
     line-height: 3;
     height: 3em;
     -webkit-backdrop-filter: blur(15px);
@@ -922,6 +922,10 @@ a {
     color: #fff;
     width: 100%;
     margin-top: -2.5em;
+}
+
+#hot {
+    margin-top: -42px;
 }
 
 .sm_title {

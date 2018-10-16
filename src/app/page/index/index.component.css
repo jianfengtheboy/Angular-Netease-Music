@@ -309,8 +309,8 @@
 .ant-carousel .slick-dots li button {
     border: 0;
     cursor: pointer;
-    background: #aaa;
-    opacity: .3;
+    background: #fff;
+    opacity: .5;
     display: block;
     width: 6px;
     height: 6px;
