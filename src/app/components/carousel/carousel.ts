@@ -85,7 +85,7 @@ export class ElCarousel extends ElCarouselProps
         this.timer && clearInterval(this.timer);
         this.timer = setInterval(() => {
             this.setActiveItem(this.model + 1);
-        }, this.interval);
+        });
     }
 
     ngAfterViewInit(): void {

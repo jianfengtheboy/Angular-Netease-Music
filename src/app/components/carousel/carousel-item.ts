@@ -19,7 +19,8 @@ import { AnimationTriggerMetadata, trigger, state, style, animate, transition } 
           [class.el-carousel__item--card]="root.type === 'card'"
           [class.is-animating]='isAnimating'
           [style]='styles'>
-          <ng-content></ng-content></div>
+          <ng-content></ng-content>
+        </div>
         `
 })
 
